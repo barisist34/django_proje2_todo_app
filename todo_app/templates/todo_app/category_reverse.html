@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block container %}
+
+
+
+<br><br>
+<h3>Categories Reverse Todos: {{ categories.title }} </h3>
+<ul >
+    {% for category_todo  in categories.todo_set.all %}
+  <li class="">  {{ category_todo }}  </li>
+  {% endfor %}
+</ul>
+{% comment %} <h1>a</h1>
+<h1>a</h1>
+<h1>a</h1> {% endcomment %}
+<br><br><br><br><br>
+
+{% endblock container %}

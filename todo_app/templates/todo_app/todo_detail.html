@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block container %}
+
+<nav aria-label="breadcrumb"> {# breadcrumb #}
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Anasayfa</a></li>
+    <li class="breadcrumb-item"><a href="{{todo_detail.category.get_absolute_url}} ">{{ todo_detail.category.title }} </a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ todo_detail.title}} </li>
+  </ol>
+</nav>
+
+<div class="card" >
+    <div class="card-body">
+      <h5>user: {{todo_detail.user}} </h5>
+      <h5 class="card-title">{{todo_detail.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{todo_detail.category}} </h6> {# category subtitle olabilir #}
+      <p class="card-text">{{todo_detail.content}}</p>
+      <ul class="list-unstyled">
+        <li>Oluşturma tarihi: {{ todo_detail.created_at }}</li>
+        <li>Son Güncelleme tarihi: {{ todo_detail.updated_at }}</li>
+      </ul>
+      <ul class="list-inline">
+        {% for tag in todo_detail.tag.all %}
+        <li class="list-inline-item"> <a href=" {{ tag.get_absolute_url }}  ">  <span class="badge rounded-pill text-bg-primary">  {{ tag }}  </span> </a>  </li> 
+        {% comment %} <li class="list-inline-item"> <a href=" {% url 'tag_view' slug_tag=tag.slug %} ">  <span class="badge rounded-pill text-bg-primary">  {{ tag }}  </span> </a>  </li>  {% endcomment %}
+        {% endfor %}
+      </ul>
+
+      <a href="/" class="card-link">Geri</a>
+
+    </div>
+  </div>
+
+
+{% endblock container %}

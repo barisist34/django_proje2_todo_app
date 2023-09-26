@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block container %}
+
+<h3 class="text-success">Todo list sayfasi</h3>
+<h3>Bütün todo lar</h3>
+<h3>Kategori: {{category}} </h3>
+<ul class="list-group">
+    {% for todo_category in todos_category %}
+    <a href="{% url 'todo_detail' id=todo_category.pk %} "><li class="list-group-item"> {{ todo_category.title }} </li></a>
+    
+    {% endfor %}
+
+  </ul>
+
+<br><br>
+{% endblock container %} 
+{% comment %} <h3 class="">Aktif todolar(api ifadesi içeren )</h3>
+<ul>
+    {% for todo_active in todos_active %}
+    <li>{{todo_active.title}} </li>
+    {% endfor %}
+</ul>
+{% endcomment %}

@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block container %}
+
+<h3 class="text-success">Todo list sayfasi</h3>
+<h3>Bütün todo lar: ({{todos.count}}) </h3>
+{% if category %}
+<h3>Kategori: {{category}} </h3>
+{% elif tag %}
+<h3>TAG: {{ tag }} </h3>
+{% endif %}
+<ul class="list-group">
+    {% for todo in todos %}
+    <a href=" {{todo.get_absolute_url}} ">  <li class="list-group-item"> <span># user: {{todo.user}} </span> <br> {{ todo.title }},   </li></a>
+    {% comment %} <a href="{% url 'todo_detail' slug_category=todo.category.slug id=todo.pk %} "><li class="list-group-item"> {{ todo.title }} </li></a> {% endcomment %}
+    
+    {% endfor %}
+
+  </ul>
+
+<br><br>
+
+<h3 class="">Aktif todolar(api ifadesi içeren )</h3>
+<ul>
+    {% for todo_active in todos_active %}
+    <li>{{todo_active.title}} </li>    
+    {% endfor %}
+</ul>
+
+<br><br>
+<h3>Categories Reverse</h3>
+<ul class="list-inline">
+  {% for global_category in global_categories %}
+  <li class="list-inline-item"> <a href=" {% url 'category_reverse' slug_category=global_category.slug %} "> {{ global_category }} </a> </li>
+  {% endfor %}
+</ul>
+{% comment %} <h1>a</h1>
+<h1>a</h1>
+<h1>a</h1> {% endcomment %}
+<br><br><br><br><br>
+
+{% endblock container %}
